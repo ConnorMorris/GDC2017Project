@@ -212,6 +212,20 @@ public class NPCharacter : Character
 
     public override void Jump()
     {
+        if (!inAir)
+        {
+            base.Jump(); // Adds the grounded condition to the parent's jump method.
+        }
         base.Jump();
+    }
+
+    public override void Move()
+    {
+        base.Move();
+        RaycastHit2D obstacleDetect = Physics2D.Raycast(transform.position, body.velocity.x * Vector2.right, 1.0); // Sends out a raycast in the direction the character is currently moving.
+        if (obstacleDetect.collider != null) // Checks if there is an obstacle in front of the character.
+        {
+            Jump(); // The character attempts to jump over the obstacle.
+        }
     }
 }
