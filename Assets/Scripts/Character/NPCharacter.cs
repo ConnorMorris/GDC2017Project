@@ -216,7 +216,6 @@ public class NPCharacter : Character
         {
             base.Jump(); // Adds the grounded condition to the parent's jump method.
         }
-        base.Jump();
     }
 
     public override void Move()
